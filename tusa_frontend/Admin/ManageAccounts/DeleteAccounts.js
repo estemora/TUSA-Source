@@ -1,0 +1,103 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../tusastyles.css'; 
+//import './surveystyles.css';
+import NavBar from '../NavBar';
+import Header from '../Header';
+
+function DeleteAccounts() {
+    const [users, setUsers] = useState([]);
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        const cookieString = document.cookie;
+        console.log('Cookies:', cookieString);
+
+        const cookies = cookieString.split('; ').reduce((acc, curr) => {
+            const [key, value] = curr.split('=');
+            acc[key] = value;
+            return acc;
+        }, {});
+
+        const { jwt, username } = cookies;
+
+        if (jwt && username) {
+            setUsername(username);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (username) {
+            console.log('Username:', username);
+            fetchUsers();
+        }
+    }, [username]);
+
+    const fetchUsers = async () => {
+		try {
+		    const response = await axios.get(`http://www.cs.transy.edu/TUSA/js-login/front/build/showUsers.cgi`);
+		    console.log('Response:', response.data);
+		    //if(Array.isArray(response.data)) {
+			const TUSAusers = response.data;
+			console.log('Users:', TUSAusers); 
+			setUsers(TUSAusers);
+		    //};
+		} catch (error) {
+		  console.error('Error fetching users:', error);
+		}
+    };
+
+    const handleDelete = async (TUSAusername) => {
+	try {
+	    const response = await axios.get(`http://www.cs.transy.edu/TUSA/js-login/front/build/deleteUser.cgi?username=${TUSAusername}`);
+	    console.log('Response:', response.data);
+	    console.log('Username to delete:', TUSAusername);
+	    if (response.status === 200) {
+		alert(`User deleted successfully`);
+		fetchUsers();
+	    } else {
+		alert(`Failed to delete user.`);
+	    }
+	} catch (error) {
+	    console.error('Error deleting user:', error);
+	    alert(`Error deleting user. Please try again later.`);
+	}
+    };
+    
+    return (
+	<div>
+	    <Header />
+	    <div className="below-nav">
+		<NavBar />
+		<main>
+		    <section class="title">
+			<p class="title-text"> DELETE ACCOUNTS </p>
+		    </section>
+		    <table className="users-table">
+			<tbody>
+			    <div className="TUSA-users-list">
+				{users.length > 0 ? (
+				    <div>
+					{users.map((TUSAusername, index) => (
+					    <tr key={index}>
+						<td>{TUSAusername}</td>
+						<button className="delete-course-button" onClick={() => handleDelete(TUSAusername)}>
+						    <p className="delete-course-text"> Delete User </p>
+						</button>
+					    </tr>
+					))}
+				    </div>
+				) : (
+				    <p> No TUSA Users </p>
+				)}
+			    </div>
+			</tbody>
+		    </table>
+		    <br /> <br />
+		</main>
+	    </div>
+	</div>
+    );
+}
+
+export default DeleteAccounts;

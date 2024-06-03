@@ -1,0 +1,220 @@
+/* Styles for the auto-schedule container */
+.auto-schedule-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Adjust as needed */
+}
+
+/* Styles for the auto-schedule section */
+.auto-schedule-section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column; /* Display as column */
+    align-items: center; /* Center horizontally */
+}
+
+.auto-schedule-section h2 {
+    color: black
+}
+
+/* Styles for the auto-schedule card */
+.auto-schedule-card {
+    text-align: center;
+    width: 70em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    background-color: #A31F37;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    font-size: 15px;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+    padding: 5px;
+    border: solid black;
+    display: center;
+}
+
+/* Styles for the semester label */
+.semester-label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Styles for the solutions container */
+.solutions-container {
+    display: flex;
+}
+
+/* Styles for each solution */
+.solution {
+    flex: 1;
+}
+
+/* Styles for the course card */
+.course-card {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.preferenced-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px; /* Adjust the padding */
+    background: #ada8a9; /* Changed the background color */
+    border: 1px solid black;
+    margin-top: 20px; /* Adjust the top margin */
+    margin-bottom: 50px; /* Adjust the bottom margin */
+    border-radius: 5px;
+    max-width: 1800px; 
+    margin: 0 auto; /* Center horizontally */
+}
+
+.preferenced-section h3 {
+    color: #A31F37; 
+    font-size: 20px; 
+    margin-bottom: 10px;
+}
+
+.preferenced-section h3 {
+    margin: 5px; 
+}
+
+.preferenced-section h2 {
+    color: #A31F37; 
+    font-size: 20px; 
+    margin-bottom: 10px;
+}
+
+.preferenced-section h2 {
+    margin: 5px; 
+}
+
+.preferenced-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0; 
+}
+
+.preferenced-section li {
+    margin: 5px; 
+    font-size: 16px;
+    text-align: center; /* Center the text */
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 200px;
+    border: 1px solid #A31F37;
+}
+
+.delete-preference {
+    background: #A31F37;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+    align-items: right;
+}
+
+.delete-preference:hover {
+    background-color: #a31f37c8; 
+    color: black; 
+}
+
+#generateScheduleButton {
+    margin-top: 10px;
+}
+.schedule-table {
+    display: grid;
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 100%;
+    justify-content: center;
+}
+
+
+.schedule-table th,
+.schedule-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.schedule-table th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+
+.schedule-table th,
+.schedule-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.schedule-table th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+.saved-button {
+    width: 85%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #DAA520; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.saved-button:hover {
+    background-color: #f0e68c;
+}
+
+.save-button.saved:hover {
+    cursor: default;
+}
+
+.saved-button {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #DAA520; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.loader {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 30px;
+    height: 30px;
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #3498db;
+    animation: spin 2s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 500px;
+  }
+  
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  
+

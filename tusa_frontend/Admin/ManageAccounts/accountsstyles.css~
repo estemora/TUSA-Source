@@ -1,0 +1,35 @@
+.create-account-form {
+    background: #A31F37;
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    width: 91.3%;
+    margin-left: 60px;
+    border: 2px solid black;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.prof-input-group {
+    margin-bottom: 15px;
+}
+
+.prof-input-group label {
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.prof-input-group input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.checkbox {
+    width: 15%;
+}

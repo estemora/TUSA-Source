@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUSA</title>
+    <link type="text/css" rel="stylesheet" href="tusastyles.css">
+    <link type="text/css" rel="stylesheet" href="homestyles.css">
+  </head>
+  <body>
+    <script id="replace_with_header" src="js/header.js"></script>
+    <div class="below-nav">
+      <script id="replace_with_navbar" src="js/nav.js"></script>
+      <main>
+	<section class="disclaimer">
+          <p class = "one"> DISCLAIMER: SCHEDULES AND THE LIKE ARE SUBJECT TO CHANGE. </p>
+	</section>
+
+	<section class="info-box">
+          <h2>T.U.S.A. Information</h2>
+          <div class="info-content">
+            <p class = "two">Introducing: TUSA - It’s like TNet,
+              but it automatically creates your class schedule based on the requires of your major and keeps it up to date with Transy’s
+              everchanging requirements. 
+              TNet is not very up to date. You have to figure everything out for yourself.
+              Loading and navigating the catalog is slow and difficult. Information is very unorganized. 
+              TUSA will dynamically update your schedule as new classes are released. 
+              When you have completed a certain percentage of classes, it will inform you that you have the opportunity to get a potential minor or additional major. It would give notice when professors went on sabbatical or a certain class 
+              that was normally offered will not be available that year. TUSA will consist of these key aspects and so much more! Overall, TUSA will be a superior version of TNet that keeps your schedule up to date, and helps you plan your ideal path at Transy.
+            </p>
+          </div>
+	</section>
+
+	<a href="http://www.cs.transy.edu/TUSA/Student/Voting/voting.html" class="vote-course-link">CLICK HERE TO VOTE FOR COURSES</a>
+
+	<div class="info-section">
+          <a href="http://www.cs.transy.edu/TUSA/Professor/FAQs/faqs.html" class="info-card">
+            <div>
+              <h3>FAQs</h3>
+              <img src="http://www.cs.transy.edu/TUSA/Professor/Home/FAQ.png" alt="FAQs" />
+            </div>
+          </a>
+          <a href="http://www.cs.transy.edu/TUSA/Professor/Cal/cal.html" class="info-card">
+            <div>
+              <h3>Calendar</h3>
+              <iframe src="http://www.cs.transy.edu/TUSA/Professor/Cal/cal.html" id="cal" title="Calendar" style="width: 400px; height: 300px; border:none;"></iframe>
+            </div>
+          </a>
+          <a href="#" class="info-card">
+            <div>
+              <h3>About</h3>
+              <img src="http://www.cs.transy.edu/TUSA/TUSAbettericon.jpeg" alt="About TUSA" />
+            </div>
+          </a>
+	</div>
+      </main>
+    </div>
+  </body>
+</html>

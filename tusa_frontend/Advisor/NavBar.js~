@@ -1,0 +1,37 @@
+import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import './tusastyles.css'
+
+function NavBar() {
+
+    const location = useLocation();
+
+    const shouldReload = (to) => {
+	return location.pathname === to;
+    };
+    
+  return (
+    <nav>
+      <ul>
+          <li><NavLink to="/advisor-home" reloadDocument={shouldReload("/advisor-home")}>Home</NavLink></li>
+	  <li>
+              <NavLink to="/advisor-manage-advisees" reloadDocument={shouldReload("/advisor-manage-advisees")}>Manage Advisees</NavLink>
+        </li>
+	  <li><NavLink to="/advisor-catalog" reloadDocument={shouldReload("/advisor-catalog")}>Catalog</NavLink></li>
+          <li><NavLink to="/advisor-calendar" reloadDocument={shouldReload("/advisor-calendar")}>Calendar</NavLink></li>
+	  <li>
+              <NavLink to="/advisor-profile" reloadDocument={shouldReload("/advisor-profile")}>Profile</NavLink>
+        </li>
+        <li className="dropdown">
+          <NavLink to="#" className="dropbtn">Notes</NavLink>
+          <div className="dropdown-content">
+              <NavLink to="/advisor-my-notes" reloadDocument={shouldReload("/advisor-my-notes")}>My Notes</NavLink>
+              <NavLink to="/advisor-recieved-notes" reloadDocument={shouldReload("/advisor-recieved-notes")}>See Recieved Notes</NavLink>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  );
+}
+
+export default NavBar;

@@ -1,0 +1,147 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../tusastyles.css'; 
+import NavBar from '../NavBar';
+import Header from '../Header';
+import { Link } from 'react-router-dom';
+
+function ManageAdvisees() {
+    const [advisees, setAdvisees] = useState([]);
+    const [username, setUsername] = useState('');
+    const [fetchedSchedule, setFetchedSchedule] = useState('');
+    
+    useEffect(() => {
+	const cookieString = document.cookie;
+	console.log('Cookies:', cookieString);
+	
+	const cookies = cookieString.split('; ').reduce((acc, curr) => {
+            const [key, value] = curr.split('=');
+            acc[key] = value;
+            return acc;
+        }, {});
+	
+	const { jwt, username } = cookies;
+	
+	if (jwt && username) {
+            setUsername(username);
+        }
+    }, []);
+    
+    useEffect(() => {
+        if (username) {
+            console.log('Username:', username);
+            fetchAdvisees(username);
+        }
+    }, [username]);
+
+    const fetchSchedule = async (username) => {
+        try {
+            console.log('advisee name:', username);
+            const response = await axios.get(
+        `http://www.cs.transy.edu/TUSA/js-login/front/build/displaySavedSchedule.cgi?username=${username}`,
+      );
+            console.log('Schedule fetched successfully:', response.data);
+            setFetchedSchedule(formatSchedule(response.data)); 
+        } catch (error) {
+            console.error('Error fetching schedule:', error);
+        }
+    };
+
+    function formatSchedule(schedule) {
+	const formattedSchedule = {};
+	
+	for (const key in schedule) {
+	    const formattedKey = key.replace(/([a-z])([A-Z])/g, '$1 $2');
+	    const capitalizedKey = formattedKey.charAt(0).toUpperCase() + formattedKey.slice(1);
+	    formattedSchedule[capitalizedKey] = schedule[key].map(course => {
+		return {
+		    course_name: course.course_name,
+		    course_title: course.course_title,
+		    course_representation: course.course_representation,
+		    credits: course.credits
+		};
+	    });
+	}
+	
+	return formattedSchedule;
+    }
+    
+    const fetchAdvisees = async (username) => {
+	try {
+	    const response = await axios.get(`http://www.cs.transy.edu/TUSA/js-login/front/build/showAdvisees.cgi?username=${username}`);
+	    console.log('Response:', response.data); 
+	    const studentAdvisees = response.data;
+	    console.log('Advisees:', studentAdvisees); 
+	    
+	    setAdvisees(studentAdvisees);
+	    
+	} catch (error) {
+	    console.error('Error fetching courses taken:', error);
+	}
+    };
+    
+ return (
+        <div>
+            <Header />
+            <div className="below-nav">
+                <NavBar />
+                <main>
+                    <section className="title">
+                        <p className="title-text"> MANAGE ADVISEES </p>
+                    </section>
+                    <div>
+                        {advisees.length > 0 ? (
+                            <>
+                                <div>
+                                    {advisees.map((advisee, index) => (
+                                        <li onClick={() => fetchSchedule(advisee)} key={index}>{advisee}</li>
+					
+                                    ))}
+                                </div>
+
+				
+				
+                                {Object.keys(fetchedSchedule).length > 0 ? (
+                                    <div className="schedule-table">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Term</th>
+                                                    <th>Course</th>
+                                                    <th>Title</th>
+                                                    <th>Representation</th>
+                                                    <th>Credits</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {Object.keys(fetchedSchedule).map((season, index) => (
+                                                    <>
+                                                        {fetchedSchedule[season].map((course, courseIndex) => (
+                                                            <tr key={`saved-course-${index}-${courseIndex}`}>
+                                                                {courseIndex === 0 && <td rowSpan={fetchedSchedule[season].length}>{season}</td>}
+                                                                <td className="table-column">{course.course_name}</td>
+                                                                <td className="table-column">{course.course_title}</td>
+                                                                <td className="table-column">{course.course_representation}</td>
+                                                                <td className="table-column">{course.credits}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                ) : (
+                                    <p>This student has no schedule</p>
+                                )}
+                            </>
+                        ) : (
+                            <p>You currently have no advisees.</p> 
+                        )}
+                    </div>
+                </main>
+            </div>
+        </div>
+    );
+}
+
+export default ManageAdvisees;

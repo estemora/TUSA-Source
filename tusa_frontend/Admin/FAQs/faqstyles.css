@@ -1,0 +1,76 @@
+.faqs-section {
+    display: flex;
+    flex-direction: row;
+    flex: wrap;
+    justify-content: center;
+}
+
+.faq {
+    background: linear-gradient(#a31f37 25%, #fff 25% 75%);
+    border: 2px solid #a31f37;
+    border-radius: 15px;
+    height: auto; /* Adjusted to auto */
+    max-height: 300px; /* Set a maximum height */
+    overflow: hidden; /* Hide overflow content */
+    margin-bottom: 10px;
+    margin-right: 60px;
+    margin-left: 60px;
+    margin-top: 5px;
+    position: relative;
+    width: 300px;
+    font-size: 12px;
+}
+
+.question {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 10px; /* Add padding */
+    max-height: 100px; /* Limit the height of the question */
+    overflow: hidden; /* Hide overflow content */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+}
+.answer {
+    color: black;
+    font-size: 16px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 10px; /* Add padding */
+    text-align: left;
+    overflow-y: auto; /* Add vertical scrollbar if needed */
+}
+
+.faq-title {
+    margin-top: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding: 2px;
+    color: white;
+    background-color: #A31F37; 
+    border-radius: 5px;
+    border: solid black;
+}
+
+/* Adjust the font size and padding for smaller screens if necessary */
+@media screen and (max-height: 700px) {
+    h1 {
+        font-size: 48px; /* Smaller font size for smaller screens */
+    }
+
+    /* Reduce padding and margins as needed for smaller screens */
+    .faqs-section {
+        margin: 5px 0;
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .faqs-section {
+        flex-direction: row;
+        align-items: center;
+    }
+}
