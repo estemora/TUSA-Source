@@ -1,0 +1,227 @@
+.courses-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.courses-text {
+    color: white;
+}
+
+.add-new-courses {
+    margin-top: 30px;
+    margin-left: 60px;
+    text-align: left;
+}
+
+.add-new-courses a {
+    font: inherit;
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.new-course-name {
+    background: #A31F37;
+    width: 93.5%;
+    margin-top: 20px;
+    margin-left: 60px;
+    border-radius: 15px;
+    height: 60px;
+}
+
+.new-course-name-title {
+    text-align: left;
+    margin-left: 20px;
+    top: 13px;
+    position: relative;
+    border: 2px solid white;
+    border-radius: 15px;
+    width: 96%;
+    height: 30px;
+}
+
+.new-course-title-label {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+    
+.new-course-title-label a {
+    font: inherit;
+    color: white;
+    font-size: 18px;
+}
+
+.new-course-name-text {
+    resize: none;
+    top: -16px;
+    left: 27px;
+    font: inherit;
+    color: white;
+    background-color: inherit;
+    width: 88%;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    position: relative;
+}
+
+.new-course-content-box {
+    border: 2px solid #A31F37;
+    background-color: white;
+    border-radius: 15px;
+    width: 93.5%;
+    height: 37vh;
+    margin-left: 60px;
+    margin-top: 5px;
+}
+
+.column {
+    float: left;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.left {
+    width: 33%;
+    margin-left: 57px;
+}
+
+.middle {
+    width: 30%;
+    margin-left: 10px;
+}
+
+.right {
+    width: 33%;
+    text-align: left;
+}
+
+label {
+    font: inherit;
+    font-size: 18px;
+}
+
+.courses-input[type=text] {
+    border-radius: 15px;
+    border: 2px solid black;
+    font: inherit;
+    font-size: 18px;
+    color: black;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.courses-input[type=radio] {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.course-description {
+    border: 2px solid black;
+    border-radius: 15px;
+    width: 70%;
+    resize: none;
+    height: 20vh;
+    margin-left: 20px;
+    margin-top: 10px;
+    font: inherit;
+    font-size: inherit;
+}
+
+.submit-button {
+    background-color: #A31F37;
+    position: relative;
+    top: 30px;
+    right: 55px;
+    color: white;
+    font: inherit;
+    border-radius: 15px;
+    border: 2px solid black;
+    font-size: 18px;
+    width: 7%;
+    float: right;
+}
+
+.course-select {
+    border: 2px solid black;
+    border-radius: 15px;
+    width: 50%;
+    font-size: 18px;
+    font: inherit;
+    background-color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.add-course-button {
+    border-radius: 15px;
+    background: #A31F37;
+    border: solid black 2px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    padding: 10px 5px;
+    margin: 500px auto 0; /* Center horizontally with auto margin */
+}
+
+.add-courses-section {
+    background-color: white;
+    padding: 20px; /* Add padding for better spacing */
+}
+
+.checkbox-group {
+    display: flex;
+    justify-content: center; /* Center the checkboxes horizontally */
+    flex-wrap: wrap;
+}
+
+.checkbox-group .category {
+    margin-right: 20px; /* Add spacing between categories */
+}
+
+.checkbox-group .category label {
+    display: block;
+    margin-bottom: 5px; /* Add spacing between options */
+}
+
+.checkbox-group .category input[type="checkbox"] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.checkbox-group input[type="checkbox"] + span {
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+.checkbox-group label {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Add border for better visibility */
+    margin-bottom: 10px; /* Adjust spacing between rows */
+}
+
+
+/* Adjust the font size and padding for smaller screens if necessary */
+@media screen and (max-height: 700px) {
+    h1 {
+        font-size: 48px; /* Smaller font size for smaller screens */
+    }
+
+    /* Reduce padding and margins as needed for smaller screens */
+    .faqs-section {
+        margin: 5px 0;
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .faqs-section {
+        flex-direction: column;
+        align-items: center;
+    }
+}

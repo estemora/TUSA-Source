@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUSA</title>
+    <link type="text/css" rel="stylesheet" href="tusastyles.css">
+    <link type="text/css" rel="stylesheet" href="coursesstyles.css">
+  </head>
+  <body>
+    <script id="replace_with_header" src="js/header.js"></script>
+    <div class="below-nav">
+      <script id="replace_with_navbar" src="js/nav.js"></script>
+      <main>
+	<section class="title">
+	  <p class="title-text"> ADD COURSES </p>
+	</section>
+	<div class="add-new-courses">
+	  <a href="http://www.cs.transy.edu/TUSA/Professor/Courses/AddCourses/addCourses.html"> + Add New Course </a>
+	</div>
+	<form action="addCourse.cgi" method="post">
+	  <div class="new-course-name">
+	    <div class="new-course-name-title">
+	      <a>New Course:</a>
+	    </div>
+	    <textarea rows="1" name="newcoursename" class="new-course-name-text" spellcheck="true" contenteditable="true"></textarea>
+	  </div>
+	  <div class="new-course-content-box">
+	    <div class="column left">
+	      <label for="program">Program:</a>
+	      <input type="text" name="programabbr"><br>
+	      <label for="coursenum">Program Abbreviation-Course Number:</label>
+	      <input type="text" name="coursenum"><br>
+	      <label for="prof">Professor Email:</label>
+	      <input type="text" name="prof"><br>
+	      <label for="instructionalstyle">Instructional Style:</label>
+	      <input type="text" name="instructionalstyle"><br>
+	      <label for="gradingstyle">Grading Style:</label>
+	      <input type="text" name="gradingstyle"><br>
+	    </div>
+	    <div class="column middle">
+	      <label for="credits">Credits:</label>
+	      <input type="text" name="credits"><br>
+	      <label for="yearoffered">Year:</label>
+	      <select name="yearoffered" id='date-dropdown'>
+	      </select>
+	      <!-- input type="text" name="yearoffered" --><br>
+	      <label for="semoffered">Semester:</label>
+	      <select id="semester" name="semoffered">
+		<option value="fall">Fall</option>
+		<option value="winter">Winter</option>
+		<option value="may">May</option>
+	      </select><br>
+	      <label for="lengthofcourse">Length:</label><br>
+	      <input type="radio" name="lengthofcourse" value="fullterm">
+	      <label for="fullterm">Full Term</label><br>
+	      <input type="radio" name="lengthofcourse" value="halfterm">
+	      <label for="halfterm">Half Term</label><br>
+	    </div>
+	    <div class="column right">
+	      <label for="prereq">Prerequisites:</label>
+	      <input type="text" name="prereq"><br>
+	      <label for="coursedescription">Course Description:</label><br>
+	      <textarea name="coursedescription" class="course-description" spellcheck="true" contenteditable="true"></textarea>
+	    </div>
+	    <button class="submit-button" type="submit" onClick="submitForm()">Add Course</button>
+	    </div>
+	  </div>
+	</form>
+      </main>
+
+
+
+
+
+
+
+    </div>    
+  </body>
+</html>
+
+<script>
+  let dateDropdown = document.getElementById('date-dropdown'); 
+       
+  let currentYear = new Date().getFullYear();    
+  let futureYear = 2040;     
+  while (futureYear >= currentYear) {      
+    let dateOption = document.createElement('option');          
+    dateOption.text = currentYear;      
+    dateOption.value = currentYear;        
+    dateDropdown.add(dateOption);      
+    currentYear += 1;    
+  }
+
+    function submitForm() {
+    // Display confirmation message
+    alert('Course Added!');
+
+    // Optionally, you can perform additional actions or submit the form via AJAX here
+
+    // Prevent the default form submission
+    return false;
+  }
+</script>

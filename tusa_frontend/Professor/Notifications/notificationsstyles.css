@@ -1,0 +1,165 @@
+.notifications-title {
+    margin-top: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding: 2px;
+    color: white;
+    background-color: #A31F37; 
+    border-radius: 15px;
+    border: 2px solid black;
+}
+
+.notifications-text {
+    color: white;
+}
+
+.notifications-section {
+    background-color: white;
+}
+
+.notification {
+    padding: 10px; /* Adjust the padding */
+    background: #ada8a9; /* Changed the background color */
+    border: 1px solid black;
+    margin-top: 50px; /* Adjust the top margin */
+    margin-bottom: 50px; /* Adjust the bottom margin */
+    border-radius: 15px;
+    max-width: 800px; /* Example of setting a max-width */
+    margin: 0 auto; /* Center horizontally */
+}
+
+.notification h2 {
+    color: #A31F37; /* Changed the color of the section title */
+    font-size: 20px; /* Adjusted the font size of the section title */
+    margin-bottom: 10px; /* Added some space below the section title */
+}
+
+.notification ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification li {
+    margin: 5px 0;
+    font-size: 16px;
+    text-align: center; /* Center the text */
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #A31F37;
+}
+
+.mark-read {
+	background: #A31F37;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	margin-left: 10px;
+	align-items: right;
+}
+
+.mark-read:hover {
+    background-color: #a31f37c8; 
+    color: black; 
+}
+
+.navigate-button {
+    border-radius: 15px;
+    background: #A31F37;
+    border: 2px solid black;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    padding: 10px 5px;
+    margin: 500px auto 0; /* Center horizontally with auto margin */
+}
+
+.navigate-button:hover {
+    background-color: #a31f37c8; 
+    color: black; 
+}
+
+.notif-creation {
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: #A31F37;
+    display: inline-table;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+    padding: 10px 20px; 
+    font-size: 20px;
+    width: fit-content; 
+    margin-top: 10px;
+    width: 400px;
+    margin-top: 40px;
+    margin-bottom: 40px; 
+}
+
+
+.notif-creation {
+    text-align: center;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.notif-creation-container {
+    align-items: center;
+    margin-left: 600px;
+  }
+
+.notif-creation-text {
+    border: 2px solid #000;
+    border-radius: 15px;
+}
+
+.notif-creation button {
+    background-color: #DAA520; 
+    color: white;
+    border: none;
+    border-radius: 15px;
+    height: 30px;
+    width: 100px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.notif-creation button:hover {
+    background-color: rgb(185, 151, 57); 
+}
+
+.notif-card {
+    width: 25%;
+    display: inline-block;
+    margin-bottom: 30px;
+    background-color: #A31F37; 
+    color: white; 
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+    padding: 5px 5px;
+    border: solid black;
+    border-radius: 15px;
+}
+
+.notif-card input[type=text] {
+    font: inherit;
+    font-size: inherit;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.notif-card textarea {
+    font: inherit;
+    font-size: inherit;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border: 2px solid black;
+    border-radius: 15px;
+}

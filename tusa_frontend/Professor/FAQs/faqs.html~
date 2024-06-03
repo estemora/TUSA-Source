@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUSA</title>
+    <link type="text/css" rel="stylesheet" href="tusastyles.css">
+    <link type="text/css" rel="stylesheet" href="faqstyles.css">
+  </head>
+  <body>
+    <script id="replace_with_header" src="js/header.js"></script>
+    <div class="below-nav">
+        <script id="replace_with_navbar" src="js/nav.js"></script>
+      <main>
+	<section class="faqs-title">
+	  <p class="faqs-text"> FREQUENTLY ASKED QUESTIONS </p>
+	</section>
+      </main>
+      <br>
+      <section class="faqs-section">
+	
+      </section>
+
+
+
+
+
+
+    </div>    
+  </body>
+</html>

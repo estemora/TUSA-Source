@@ -1,0 +1,141 @@
+.profile-title {
+    margin-top: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding: 2px;
+    color: white;
+    background-color: #A31F37; 
+    border-radius: 5px;
+    border: solid black;
+}
+
+.profile-text {
+    color: white;
+}
+
+.profile-image {
+    margin-left: 57px;
+    margin-top: 33px;
+    float: left;
+}
+
+.profile-image img {
+    width: 155px; 
+    height: auto;
+    border-radius: 50%;
+}
+
+.profile-info {
+    margin-left: 20px;
+    margin-top: 50px;
+    font-size: 20px;
+    color: black;
+}
+
+.profile-info p {
+    text-align: left;
+}
+
+.user-info-container {
+    margin-left: 20px;
+    margin-top: 33px;
+}
+
+.user-info-container img {
+    width: 155px; 
+    height: auto;
+    border-radius: 50%;
+}
+
+.edit-profile {
+    margin-top: 0px;
+    color: black;
+    text-align: center;
+}
+
+.edit-profile a {
+    margin-top: 0px;
+    color: black;
+    text-align: center;
+}
+
+.laptop-image {
+    width: 500px; 
+    height: auto;
+}
+
+#grad-cap {
+    margin-top: 0px;
+    width: 125px;
+    height: auto;
+}
+
+#scroll {
+    margin-top: 0px;
+    width: 125px;
+    height: auto;
+}
+
+#clock {
+    margin-top: 0px;
+    width: 100px;
+    height: auto;
+}
+
+#calendar {
+    margin-top: 0px;
+    width: 150px;
+    height: auto;
+}
+
+.info-image {
+    margin-top: 33px;
+}
+
+.status-info {
+    font-size: 20px;
+    margin-left: 1360px;
+    margin-top: -300px;
+    text-align: left;
+}
+
+.picture-info {
+    font-size: 20px;
+    margin-left: 1000px;
+    margin-top: -200px;
+    text-align: left;
+}
+
+.status-info p {
+    text-align: left;
+}
+
+#profile-left {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; 
+}
+
+
+#profile-right {
+    float: right;
+}
+
+#profile-center {
+    margin: 0 auto;
+}
+
+.grad-date {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.user-info {
+    margin-left: 60px;
+    text-align: left;
+}
+
+.email-info {
+    margin-top: 60px;
+}
