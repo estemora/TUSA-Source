@@ -1,0 +1,88 @@
+.login-container {
+    max-width: 400px;
+    width: 100%;
+    margin: 20px auto; 
+    background-color: #A31F37;
+    border-radius: 8px;
+    padding: 20px;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.login-form {
+    background: #A31F37;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.center {
+    display: block;
+    margin: 0 auto;
+    max-width: 300px; 
+    height: auto; 
+}
+
+.sign-in-button {
+    width: 85%;
+    padding: 10px;
+    background-color: #DAA520; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.sign-in-button:hover {
+    background-color: #f0e68c;
+}
+
+
+
+.forgot-password {
+    display: block;
+    color: white;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    color: #f0e68c;
+    text-decoration: underline;
+}
+
+.create-account {
+    display: block;
+    color: white;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.create-account:hover {
+    color: #f0e68c;
+    text-decoration: underline; 
+}

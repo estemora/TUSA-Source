@@ -1,0 +1,37 @@
+import React, { createContext, useContext, useState } from 'react';
+import AuthService from './AuthService';
+
+export const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+  const [authenticated, setAuthenticated] = useState(AuthService.isAuthenticated());
+  const [token, setToken] = useState(AuthService.getToken());
+    const [username, setUsername] = useState('');
+    const [professor, setProfessor] = useState('');
+
+  const login = (token, username) => {
+    AuthService.setToken(token);
+    setToken(token);
+      localStorage.setItem('username', username);
+      localStorage.setItem('professor', professor);
+      setUsername(username);
+      setProfessor(professor);
+    setAuthenticated(true);
+  };
+
+  const logout = () => {
+    AuthService.removeToken();
+    setToken(null);
+    localStorage.removeItem('username');
+    setUsername('');
+    setAuthenticated(false);
+  };
+
+  return (
+    <AuthContext.Provider value={{ authenticated, login, logout, token, username }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(AuthContext);

@@ -1,0 +1,165 @@
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthProvider';
+import validation from './loginvalidation';
+import axios from 'axios';
+import './loginstyles.css'; 
+import './tusastyles.css'; 
+
+function Login() {
+  const [values, setValues] = useState({
+    username: '',
+    password: '',
+  });
+
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+
+  const handleInput = (event) => {
+    setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Form submitted');
+    console.log('Form values:', values);
+  
+    const err = validation(values);
+    console.log('Validation errors:', err);
+  
+    if (err.username === '' && err.password === '') {
+	console.log('Validation successful, attempting login...');
+  
+      axios.post('http://www.cs.transy.edu/TUSA/js-login/front/build/login.cgi', values, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+      .then((res) => {
+        console.log('Login response:', res.data);
+      
+          if (res.data.status === 'Success') {
+	      const expirationTimeInSeconds = 3600; // 1 hour
+	      const expirationDate = new Date(Date.now() + expirationTimeInSeconds * 1000);
+	      //const professor = values.professor
+	      //document.cookie = `professor=${professor}; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
+	      //document.cookie = `professor=false; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
+	      const professor = getCookie('professor');
+	      console.log('Getting professor cookie: ' + professor)
+	      const username = values.username;
+	      //const professor = getCookie('professor') === 'true';
+	      if (professor == "true") {
+		  console.log('Login successful, navigating to /professor-home');
+		  const token = res.data.token;
+		  const username = values.username; 
+		  localStorage.setItem('token', token);
+		  login(token, username); 
+		  navigate('/professor-home'); 
+		  document.cookie = `jwt=${token}; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
+		  document.cookie = `username=${username}; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
+	      }
+	      else if (username == "admin") {
+		  console.log('Login successful, navigating to /admin-home');
+		  const token = res.data.token;
+		  localStorage.setItem('token', token);
+		  login(token, username); 
+		  navigate('/admin-home'); 
+		  const expirationTimeInSeconds = 3600; // 1 hour
+		  const expirationDate = new Date(Date.now() + expirationTimeInSeconds * 1000);
+		  document.cookie = `jwt=${token}; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
+		  document.cookie = `username=${username}; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
+	      }
+	      else if (username == "registrar") {
+		  console.log('Login successful, navigating to /admin-home');
+		  const token = res.data.token;
+		  localStorage.setItem('token', token);
+		  login(token, username); 
+		  navigate('/registrar-home'); 
+		  const expirationTimeInSeconds = 3600; // 1 hour
+		  const expirationDate = new Date(Date.now() + expirationTimeInSeconds * 1000);
+		  document.cookie = `jwt=${token}; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
+		  document.cookie = `username=${username}; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
+	      }
+	      else {
+		  console.log('Login successful, navigating to /student-home');
+		  const token = res.data.token;
+		  const username = values.username; 
+		  localStorage.setItem('token', token);
+		  login(token, username); 
+		  navigate('/student-home'); 
+		  const expirationTimeInSeconds = 3600; // 1 hour
+		  const expirationDate = new Date(Date.now() + expirationTimeInSeconds * 1000);
+		  document.cookie = `jwt=${token}; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
+		  document.cookie = `username=${username}; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
+              }
+	  } else {
+          console.log('Login failed: No record exists');
+          alert('No record exists');
+        }
+      })
+      .catch((error) => {
+        console.error('An error occurred during login:', error);
+      });      
+    }
+  };
+
+    function getCookie(name) {
+  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return cookieValue ? cookieValue.pop() : undefined;
+}
+
+  return (
+    <div>
+      <img
+        src="http://www.cs.transy.edu/TUSA/TUSAbettericon.jpeg"
+        alt="TUSA Icon"
+        className="center"
+        width="300"
+        height="150"
+      />
+      <div className="login-container">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              placeholder="Enter Username"
+              name="username"
+              onChange={handleInput}
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Password:</label>
+            <input
+              title="Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character"
+              type="password"
+              placeholder="Enter Password"
+              name="password"
+              onChange={handleInput}
+            />
+            <span className="password-toggle-icon">
+              <span className="password-toggle-icon">
+                <i className="fas fa-eye"></i>
+              </span>
+            </span>
+          </div>
+          <button type="submit" className="sign-in-button">
+            Sign In
+          </button>
+        </form>
+        <Link to="/signup" className="create-account">
+          Create Account
+        </Link>
+        <Link to="/forgot-password" className="create-account">
+          Forgot Password?
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
+
+
+
+
