@@ -1,0 +1,463 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../tusastyles.css';
+import './notesstyles.css';
+import NavBar from '../NavBar';
+import Header from '../Header';
+
+function NotesPage() {
+  const [showNewNoteForm, setShowNewNoteForm] = useState(false);
+  const [showNotes, setShowNotes] = useState(true);
+  const [editMode, setEditMode] = useState(false);
+  const [viewMode, setViewMode] = useState(false); 
+  const [receivedNotes, setReceivedNotes] = useState([]);
+  const [recipientValue, setRecipientValue] = useState('');
+  const [formData, setFormData] = useState({
+    id: '',
+    username: '',
+    recipient: '',
+    subject: '',
+    body: '',
+    sender: ''
+  });
+  const [noteButtonClicked, setNoteButtonClicked] = useState(false);
+  const [notesTitleVisible, setNotesTitleVisible] = useState(true);
+  const [showHideButtons, setShowHideButtons] = useState(false);
+  const [suggestedOptions, setSuggestedOptions] = useState([]);
+  const [suggestedOptionClicked, setSuggestedOptionClicked] = useState(false);
+  const [searchSenderTerm, setSearchSenderTerm] = useState('');
+  const [clickedButtonType, setClickedButtonType] = useState('');
+
+
+  useEffect(() => {
+    const token = getCookieValue('token');
+    const username = getCookieValue('username');
+
+    setFormData(prevState => ({
+      ...prevState,
+      token: token,
+      username: username
+    }));
+
+    if (token && username) {
+      fetchNotes(username);
+    }
+  }, []);
+
+  useEffect(() => {
+    setRecipientValue(formData.recipient);
+  }, [formData.recipient]);  
+
+  const getCookieValue = (name) => {
+    const cookies = document.cookie.split('; ');
+    for (let cookie of cookies) {
+      const [cookieName, cookieValue] = cookie.split('=');
+      if (cookieName === name) {
+        return cookieValue;
+      }
+    }
+    return '';
+  };
+
+  const fetchNotes = async (username) => {
+    try {
+      const receivedNotes = `http://www.cs.transy.edu/TUSA/js-login/front/build/showReceivedNotes.cgi?username=${username}`;
+  
+      const response = await axios.get(receivedNotes);
+      console.log('Response from server:', response.data); 
+      setReceivedNotes(response.data);
+    } catch (error) {
+      console.error('Error fetching received notes:', error);
+    }
+  };
+
+  const handleSenderSearchChange = (e) => {
+    setSearchSenderTerm(e.target.value);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSuggestedOptionClick = (recipient) => {
+    setRecipientValue(recipient);
+    setSuggestedOptions([]);
+    setSuggestedOptionClicked(true);
+  };
+  const handleRecipientChange = (e) => {
+    const { value } = e.target;
+    setRecipientValue(value);
+
+    if (value.trim() !== '') {
+      axios.get(`http://www.cs.transy.edu/TUSA/js-login/front/build/showNoteRecipients.cgi?query=${value}`)
+        .then(response => {
+          console.log('Response from API:', response.data);
+          setSuggestedOptions(response.data.slice(0, 5));
+        })
+        .catch(error => {
+          console.error('Error fetching suggestions:', error);
+        });
+    } else {
+      setSuggestedOptions([]);
+    }
+  };
+
+  const submitNewNoteForm = async (e) => {
+    e.preventDefault();
+    
+    if (!formData.subject || !recipientValue || !formData.body) {
+      alert('Please fill in all fields.');
+      return;
+    }
+  
+    if (!suggestedOptionClicked) {
+      alert('Please select a recipient from the suggested options.');
+      return;
+    }
+  
+    formData.recipient = recipientValue;
+    try {
+      let response;
+      if (editMode) {
+        response = await axios.post(
+          'http://www.cs.transy.edu/TUSA/js-login/front/build/editNote.cgi',
+          formData,
+          {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          }
+        );
+      } else {
+        response = await axios.post(
+          'http://www.cs.transy.edu/TUSA/js-login/front/build/addNote.cgi',
+          formData,
+          {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          }
+        );
+      }
+      console.log('Response:', response.data);
+      if (response.status === 200) {
+        if (editMode) {
+          alert('Note updated successfully!');
+        } else {
+          alert('Note created successfully!');
+        }
+        fetchNotes(formData.username);
+        setFormData({
+          ...formData,
+          subject: '',
+          recipient: '',
+          body: ''
+        });
+        setEditMode(false);
+        setRecipientValue(''); 
+      } else {
+        alert('Failed to create/update note. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Error submitting form. Please try again later.');
+    }
+  };  
+
+  const handleNoteButtonClick = (type, note = null) => {
+    setClickedButtonType(type);
+    if (type === 'new') {
+      setShowNewNoteForm(true);
+      setFormData({
+        id: '',
+        username: formData.username,
+        recipient: '',
+        subject: '',
+        body: ''
+      });
+      setNoteButtonClicked(true);
+      setNotesTitleVisible(false);
+      setSuggestedOptions([]); 
+      setRecipientValue('');
+      setShowNotes(false);
+      setEditMode(false);
+      setViewMode(false); 
+    } else if (type === 'hide') {
+      setShowHideButtons((prevShowHideButtons) => !prevShowHideButtons);
+    } else if ((type === 'reply') && note) {
+      setFormData({
+        username: formData.username,
+        recipient: note.sender,
+        subject: `Re: ${note.subject}`,
+        body: ''
+      });      
+      setSuggestedOptions([]); 
+      setShowNewNoteForm(true);
+      setNoteButtonClicked(true);
+      setNotesTitleVisible(false);
+      setShowNotes(false);
+      setEditMode(type === 'edit');
+      setViewMode(false); 
+      setSuggestedOptionClicked(true); 
+    } else if (type === 'view' && note) {
+      setFormData({
+        id: note.id,
+        username: formData.username,
+        recipient: note.sender,
+        subject: note.subject,
+        body: note.body,
+        sender: note.sender
+      });
+      setSuggestedOptions([]); 
+      setShowNewNoteForm(true);
+      setNoteButtonClicked(true);
+      setNotesTitleVisible(false);
+      setShowNotes(false);
+      setEditMode(false); 
+      setViewMode(true); 
+    }
+  }; 
+  
+
+  const handleHideButtonClick = (note) => {
+    const updatedReceivedNotes = receivedNotes.map((receivedNote) => {
+        if (receivedNote.id === note.id) {
+            return { ...receivedNote, isHidden: true };
+        }
+        return receivedNote;
+    });
+    setReceivedNotes(updatedReceivedNotes);
+};
+
+  const handleNewNoteButtonClickLeft = () => {
+    setFormData({
+      id: '',
+      username: formData.username,
+      recipient: '',
+      subject: '',
+      body: ''
+    });
+    setClickedButtonType('');
+    setSuggestedOptions([]); 
+    setRecipientValue('');
+    setEditMode(false);
+    setViewMode(false); 
+  
+    if (!showNewNoteForm) {
+      setShowNewNoteForm(true);
+      setNoteButtonClicked(true);
+      setNotesTitleVisible(false);
+      setShowNotes(false);
+    }
+  };
+
+  const handleAllNotesButtonClick = () => {
+    setShowNewNoteForm(false);
+    setShowNotes(true);
+    setNoteButtonClicked(false);
+    setNotesTitleVisible(true);
+    setViewMode(false); 
+  };
+
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    }
+    return text;
+  };
+
+    // Function to filter notes based on username
+    const filterNotes = (notes, sender, searchTerm) => {
+      return notes.filter((note) => {
+        const senderMatch = !sender || note.sender === sender;
+        const searchTermMatch =
+          !searchTerm || note.sender.toLowerCase().includes(searchTerm.toLowerCase());
+        return senderMatch && searchTermMatch;
+      });
+    };
+
+  return (
+    <div>
+      <Header />
+      <div className="below-nav">
+        <NavBar />
+        <main>
+          <section className="notes-title">
+            <p className="notes-text">{notesTitleVisible ? 'RECEIVED NOTES' : 'MY NOTE'}</p>
+          </section>
+        </main>
+        <div className="notes-section">
+          <ul className="menu">
+            {!noteButtonClicked && (
+              <a>
+                <button className="add-notes" onClick={() => handleNoteButtonClick('new')}>
+                  <div className="button-text"> NEW NOTE </div> <br /> <br />
+                </button>
+              </a>
+            )}
+            {!noteButtonClicked && (
+              <a>
+                <button className="add-notes" onClick={() => handleNoteButtonClick('hide')}>
+                  <div className="button-text"> HIDE NOTES </div> <br /> <br />
+                </button>
+              </a>
+            )}
+          </ul>
+          {!showNewNoteForm && (
+            <div className="suggested-options">
+              <label htmlFor="sender-search">Filter By Sender:</label> <br />
+              <input
+                type="text"
+                id="sender-search"
+                value={searchSenderTerm}
+                onChange={handleSenderSearchChange}
+              />
+            </div>
+          )}
+          {showNewNoteForm && (
+            <div className="notes-section">
+              <form className="note-form" action="#" method="post">
+                <div id="notes-right">
+                <div className="note-subject-box">
+                  <a>Subject:</a>
+                  <textarea
+                    name="subject"
+                    rows="1"
+                    className="note-subject"
+                    spellCheck="true"
+                    contentEditable="true"
+                    value={formData.subject}
+                    onChange={(e) => {
+                      handleInputChange(e);
+                    }}
+                    readOnly={viewMode} 
+                    required
+                  ></textarea></div>
+                  <div className="suggested-options-container">
+                  {Array.isArray(suggestedOptions) && suggestedOptions.length > 0 && (
+                    suggestedOptions.map((option, index) => (
+                      <button
+                        key={index} 
+                        className="suggested-option"
+                        onClick={() => handleSuggestedOptionClick(option.recipient)}
+                      >
+                        {option.recipient}
+                      </button>
+                    ))
+                  )} </div>                  
+                  <div className="to-box">
+                    <div className="to-text">{viewMode ? 'From:' : 'To:'}</div>
+                    <textarea
+                    name="recipient"
+                    rows="1"
+                    className="to-field"
+                    value={viewMode ? `    ${formData.sender}` : recipientValue}
+                    onChange={handleRecipientChange}
+                    readOnly={(viewMode && !editMode) || (!viewMode && editMode) || (clickedButtonType === 'reply')}
+                    required 
+                  ></textarea>              
+                  </div>
+                  <br /><br /> <br /><br />
+                  <textarea
+                    name="body"
+                    className="note-body"
+                    spellCheck="true"
+                    contentEditable="true"
+                    value={formData.body}
+                    onChange={handleInputChange}
+                    readOnly={viewMode}
+                    required 
+                  ></textarea>                  
+                  <button
+                    type="submit"
+                    className="send-button"
+                    onClick={submitNewNoteForm}
+                    disabled={viewMode} 
+                    style={{ display: viewMode && 'none' }}
+                  >
+                    {!viewMode && (editMode ? 'Update' : 'Send')}
+                  </button>
+                  <br />
+                </div>
+                <div id="notes-left">
+                  <a><button type="button" className="option-buttons" onClick={handleNewNoteButtonClickLeft}> New Note </button> </a>
+                  <a><button type="button" className="option-buttons" onClick={handleAllNotesButtonClick}> All Notes </button> </a>
+                </div>
+              </form>
+              <br /><br /><br /><br /><br />
+            </div>
+          )}
+          {showNotes && (
+            <div className="display-notes-section">
+              {filterNotes(receivedNotes, null, searchSenderTerm).map((receivedNote, index) => {
+                if (!receivedNote.isHidden) {
+                    return (
+                        <div className="sent-note" key={index}>
+                            <div className="note">
+                                <div className="note-subject">
+                                    <a>{truncateText(receivedNote.subject,10)}</a> <br />
+                                    <a> From: {receivedNote.sender}</a>
+                                    <div className="delete-button">
+                              {showHideButtons && (
+                                <button onClick={() => handleHideButtonClick(receivedNote)}>
+                                  Hide
+                                </button>
+                              )}
+                            </div>
+                                </div>
+                                <div className="note-body">
+                                    <a>{truncateText(receivedNote.body, 214)}</a>
+                                </div>
+                                <div className="delete-button">
+                                    {!showHideButtons && (
+                                        <button onClick={() => handleNoteButtonClick('reply', receivedNote)}>
+                                            Reply
+                                        </button>
+                                    )}
+                                    {!showHideButtons && (
+                                        <button onClick={() => handleNoteButtonClick('view', receivedNote)}>
+                                            View
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    );
+                } else {
+                    return null; 
+                }
+              })}
+              </div>
+          )}          
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default NotesPage;
+
+
+
+
+
+
+
+                 
+
+
+
+
+
+
+
+
+
+
+
+
+

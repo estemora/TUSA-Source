@@ -1,0 +1,42 @@
+import React from 'react';
+import '../tusastyles.css'; 
+import './faqstyles.css';
+import NavBar from '../NavBar';
+import Header from '../Header';
+
+function FAQs() {
+    return (
+	<div>
+	    <Header />
+	    <div className="below-nav">
+		<NavBar />
+		    <section className="faq-title">
+			<p className="title-text"> FREQUENTLY ASKED QUESTIONS </p>
+		    </section>
+			<br/>
+			<div className="faqs-section">
+		    <div className ="faq">
+			<div className="question"> How do I add an event to the calendar? </div> 
+			<div className="answer"> On the calendar page, click the + button in the top left corner to pull up the form for creating an event. Insert the start date in the first box and the end date in the second box by clicking the calendar and selcting the date. Enter the event title and the event description in their corresponding boxes below the date boxes. Click add an event to have it appear in your list of events and on your calendar. </div> <br />
+		    </div>
+		    <div className ="faq">
+			<div className="question"> What are Notes? </div> <br />
+			<div className="answer"> Notes are a way for you to communicate with other TUSA users. In order to send someone a note, go to My Notes and select New Note. When you start to type someone's name into the "to" field, options of valid TUSA users will appear based on what you typed in. Once you hit Send Note, the note will appear in the other user's Recieved Notes section. </div> <br />
+		    </div>
+
+		    <div className ="faq">
+			<div className="question"> Will deleting a note on my end delete it for the recipient? </div> 
+			<div className="answer"> Yes, when you delete a note that you have sent to another user, the note will delete on both their end and your end. If they have already replied to the note you are deleting, their reply will not delete upon deleting the original note. </div> <br />
+		    </div>
+		    <div className ="faq">
+			<div className="question"> Are the courses offered up-to-date in TUSA? </div> 
+			<div className="answer"> The courses in the TUSA catalog were given to the developers of TUSA by Transylvannia University. All course information in the TUSA catalog are consitant with what Transy provided the developers. NOTE: This does not mean that all of the information divrovided by Transy is accurate and udiv-to-date. </div> <br />
+		    </div>
+		    <br /> <br />
+		</div>
+	    </div>
+	</div>
+    );
+}
+
+export default FAQs;

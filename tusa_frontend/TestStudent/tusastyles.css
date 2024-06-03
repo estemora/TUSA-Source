@@ -1,0 +1,235 @@
+body, html {
+    height: 100vh;
+    margin: 0;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+    background-color: #A31F37;
+    align-items: center;
+    text-align: center;
+}
+
+header {
+    margin-top: 10px; /* Reduced margin */
+    padding: 0;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+    padding: 5px 2px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+h2 {
+    margin-top: 0;
+    color: white;
+    text-align: center;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+    padding: 0;
+}
+
+.below-nav {
+    background-color: white;
+    min-height: calc(90vh); 
+}
+
+.dropdown-container {
+    display: flex;
+    justify-content: space-between;
+    width: 50%; 
+    margin: auto; 
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.dropdown-container select {
+    margin: 5px;
+    padding: 5px;
+    width: 100%; 
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.title {
+    margin-bottom: 20px;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.center {
+    display: block;
+    margin: 0 auto;
+    max-width: 300px; 
+    height: auto; 
+}
+
+/* Navigation menu styles */
+nav {
+    width: 100%; 
+    background-color: #615d5e; 
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 10px 0;
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    font-size: 20px; 
+    background-color: #615d5e;
+    text-align: center;
+    z-index: 1000;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+nav li {
+    position: relative; 
+    text-align: center;
+}
+
+/* Dropdown styles */
+nav .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #615d5e;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1001;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+nav li:hover .dropdown-content {
+    display: block;
+}
+
+nav .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+nav .dropdown-content a:hover {
+    background-color: #ddddddbb; /* Light background for hover */
+}
+
+/* Additional styles */
+nav a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 14px 16px; 
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.info-box {
+    margin-top: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding: 15px;
+    color: white;
+    background-color: #A31F37; 
+    border-radius: 5px;
+    border: solid black;
+    font-size: 30px;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.info-content {
+    background-color: white;
+    color: black;
+    padding: 3px;
+    border-radius: 2px;
+    border: solid black;
+    font-size: 21px;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 60px;
+}
+
+.declare-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.account {
+    position: absolute;
+    width: 48px;
+    height: 10px;
+    top: 1px;
+    left: 15px;
+    margin: 10px; 
+}
+
+.account a img {
+    width: 48px; 
+    height: auto;
+    border-radius: 50%;
+}
+
+.logout {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    margin: 10px;
+    background-color: #DAA520; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 80px;
+    height: 40px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.logout:hover {
+    background-color: rgb(185, 151, 57); 
+}
+
+.notifications {
+    position: absolute;
+    top: 0;
+    right: 60px;
+    margin-top: 10px;
+    margin-bottom: 0x;
+}
+
+.notifications a img {
+    width: 43px; /* Adjust as needed */
+    height: auto;
+    border-radius: 50%;
+}
+
+.help {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px; /* Adjust as needed */
+}
+
+.help a img {
+    width: 50px; 
+    height: auto;
+    border-radius: 50%; 
+}
+
+
+/* Adjust the font size and padding for smaller screens if necessary */
+@media screen and (max-height: 700px) {
+    h1 {
+        font-size: 48px; /* Smaller font size for smaller screens */
+    }
+}
