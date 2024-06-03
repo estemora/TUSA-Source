@@ -1,0 +1,88 @@
+.preferences-title {
+    margin-top: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding: 2px;
+    color: white;
+    background-color: #A31F37; 
+    border-radius: 5px;
+    border: solid black;
+}
+
+.preferences-button {
+    width: 85%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #DAA520; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+}
+
+.preferences-button:hover {
+    background-color: #f0e68c;
+}
+
+.preferences-text {
+    color: white;
+    text-align: center;
+}
+
+.preferences-section {
+    background-color: white;
+    padding: 10px; /* Add padding for better spacing */
+}
+
+.below-preferences-nav {
+    background-color: white;
+    min-height: calc(15vh);
+}
+
+.checkbox-group {
+    display: flex;
+    justify-content: center; /* Center the checkboxes horizontally */
+    flex-wrap: wrap;
+}
+
+.checkbox-group .category {
+    margin-right: 20px; /* Add spacing between categories */
+}
+
+.checkbox-group .category label {
+    display: block;
+    margin-bottom: 5px; /* Add spacing between options */
+}
+
+.checkbox-group .category input[type="checkbox"] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.checkbox-group input[type="checkbox"] + span {
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+.checkbox-group label {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Add border for better visibility */
+    margin-bottom: 10px; /* Adjust spacing between rows */
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px; 
+    overflow-y: auto; /* Enable vertical scrolling for overflow */
+  }
+  
+  .category input[type="text"] {
+    max-width: 300px; /* Set a maximum width for the input field */
+  }
+  

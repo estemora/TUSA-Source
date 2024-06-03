@@ -1,0 +1,128 @@
+.voting-section {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.polls-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.voting-title {
+    margin-top: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding: 2px;
+    color: white;
+    background-color: #A31F37; 
+    border-radius: 15px;
+    border: solid black;
+}
+
+.voting-text {
+    color: white;
+}
+
+.suggestion-card {
+    width: 25%;
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 15px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    background-color: #A31F37; 
+    color: white; 
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Times New Roman', 'Dejavu Serif', serif;
+    padding: 5px 5px;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.suggestion-card input[type=text] {
+    font: inherit;
+    font-size: inherit;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+
+.option-container button:hover {
+    font: inherit;
+    font-size: inherit;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: white;
+    background-color: #a31f37c8;
+    min-width: 80px; 
+}
+
+.polls-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.option-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .option-container span {
+    flex-grow: 1; /* Grow to fill available space */
+    text-align: center; /* Center the text */
+    margin-left: 90px;
+  }
+  
+  .option-container button {
+    font: inherit;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: white;
+    background-color: #A31F37;
+    min-width: 80px;
+    margin-left: 10px; /* Add margin to separate the button from the text */
+  }
+  
+  
+  
+
+.polls-section li {
+    margin: 5px 0;
+    font-size: 16px;
+    justify-content: space-between; /* Align items horizontally with space between */
+    align-items: center; /* Center items vertically */
+    color: black;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #A31F37;
+}
+
+
+
+/* Adjust the font size and padding for smaller screens if necessary */
+@media screen and (max-height: 700px) {
+    h1 {
+        font-size: 48px; /* Smaller font size for smaller screens */
+    }
+
+    /* Reduce padding and margins as needed for smaller screens */
+    .voting-section {
+        margin: 5px 0;
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .voting-section {
+        flex-direction: column;
+        align-items: center;
+    }
+}

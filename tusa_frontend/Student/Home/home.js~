@@ -1,0 +1,60 @@
+import React, { useContext } from 'react';
+import '../tusastyles.css'; 
+import './homestyles.css';
+import NavBar from '../NavBar';
+import Header from '../Header';
+import { Link } from 'react-router-dom';
+
+function Home() {
+
+  return (
+    <div>
+      <Header />
+      <div className="below-nav">
+      <NavBar />
+        <main>
+          <section className="disclaimer">
+            <p className="disclaimer-text"> DISCLAIMER: SCHEDULES AND THE LIKE ARE SUBJECT TO CHANGE. </p>
+          </section>
+          <section className="info-box">
+            <h2>T.U.S.A. Information</h2>
+            <div className="info-content">
+              <p className="info-text">Introducing: TUSA - It’s like TNet,
+                but it automatically creates your class schedule based on the requires of your major and keeps it up to date with Transy’s
+                everchanging requirements. 
+                TNet is not very up to date. You have to figure everything out for yourself.
+                Loading and navigating the catalog is slow and difficult. Information is very unorganized. 
+                TUSA will dynamically update your schedule as new classes are released. 
+                When you have completed a certain percentage of classes, it will inform you that you have the opportunity to get a potential minor or additional major. It would give notice when professors went on sabbatical or a certain class 
+                that was normally offered will not be available that year. TUSA will consist of these key aspects and so much more! Overall, TUSA will be a superior version of TNet that keeps your schedule up to date, and helps you plan your ideal path at Transy.
+              </p>
+            </div>
+          </section>
+          <Link to="/student-voting" className="vote-course-link">CLICK HERE TO VOTE FOR COURSES</Link>
+          <div className="info-section">
+          <Link to="/student-faqs" className="info-card">
+          <div>
+            <h3>FAQs</h3>
+            <img src="./FAQ.png" alt="FAQs" />
+          </div>
+        </Link>
+        <Link to="/student-calendar" className="info-card">
+              <div>
+                <h3>Calendar</h3>
+                <iframe src="https://calendar.google.com/calendar/embed?src=k20vfh0jtosrc44okgqjn79gndu9qe6k%40import.calendar.google.com&ctz=America%2FNew_York" style={{ border: '0', width: '100%', height: '400px' }} frameborder="0" scrolling="no"></iframe>
+              </div>
+          </Link>
+            <a href="#" className="info-card">
+              <div>
+                <h3>About</h3>
+                <img src="./TUSAbettericon.jpeg" alt="About TUSA" />
+              </div>
+            </a>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
+
+export default Home;
