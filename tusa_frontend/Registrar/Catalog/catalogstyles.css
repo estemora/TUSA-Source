@@ -1,0 +1,112 @@
+.catalog-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.catalog-title {
+    margin-top: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding: 2px;
+    color: white;
+    background-color: #A31F37; 
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+.courses-section {
+  width: 90%;
+}
+
+.horizontal-table {
+  width: 100%;
+  margin-left: 90px;
+  margin-bottom: 40px;
+}
+
+.horizontal-table th,
+.horizontal-table td {
+  border: 1px solid black;
+  padding: 8px;
+  word-wrap: break-word; 
+}
+
+.horizontal-table th {
+  position: relative; /* Ensure relative positioning for absolute arrow */
+  background-color: #A31F37;
+  color: white;
+  text-align: center;
+}
+
+.horizontal-table th:hover {
+  background-color: #a31f37c8; 
+  cursor: pointer;
+}
+
+.horizontal-table th span.text {
+  display: inline-block; 
+}
+
+.horizontal-table th span.arrow {
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  right: 5px; 
+}
+
+.catalog-text {
+  color: white;
+}
+
+.horizontal-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.horizontal-row div {
+  flex: 1;
+}
+
+.horizontal-row div h3 {
+  margin-bottom: 5px;
+}
+
+.horizontal-row div p {
+  margin: 0;
+}
+
+.catalog-card {
+  width: 25%;
+  display: inline-block;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  background-color: #A31F37; 
+  color: white; 
+  text-align: center;
+  border-radius: 15px; 
+  font-size: 15px;
+  font-family: 'Times New Roman', 'Dejavu Serif', serif;
+  padding: 5px 5px;
+  border: 2px solid black;
+}  
+
+.catalog-search {
+  border: 2px solid black;
+  border-radius: 15px;
+  width: 95%;
+}
+
+.catalog-select {
+  width: 100%; 
+  border: 2px solid black;
+  border-radius: 15px;
+  font-size: 18px;
+  font: inherit;
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

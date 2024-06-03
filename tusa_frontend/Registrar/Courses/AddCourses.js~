@@ -1,0 +1,236 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import '../tusastyles.css';
+import './coursesstyles.css';
+import Header from '../Header';
+import NavBar from '../NavBar';
+
+/*
+let dateDropdown = document.getElementById('date-dropdown'); 
+
+let currentYear = new Date().getFullYear();    
+let futureYear = 2040;     
+while (futureYear >= currentYear) {      
+    let dateOption = document.createElement('option');          
+    dateOption.text = currentYear;      
+    dateOption.value = currentYear;        
+    dateDropdown.add(dateOption);      
+    currentYear += 1;    
+}
+*/
+
+
+function AddCourses() {
+    const [newcoursename, setNewCourseName] = useState('');
+    const [programabbr, setProgramAbbr] = useState('');
+    const [coursenum, setCourseNum] = useState('');
+    const [instructionalstyle, setInstructionalStyle] = useState('');
+    const [gradingstyle, setGradingStyle] = useState('');
+    const [credits, setCredits] = useState('');
+    const [yearoffered, setYearOffered] = useState('');
+    const [semoffered, setSemOffered] = useState('');
+    const [lengthofcourse, setLengthOfCourse] = useState('');
+    const [prereq, setPrereq] = useState('');
+    const [coursedescription, setCourseDescription] = useState('');
+
+    const handleInput = (event) => {
+	const { name, value } = event.target;
+	if (name === 'newcoursename') {
+	    setNewCourseName(value);
+	} else if (name === 'programabbr') {
+	    setProgramAbbr(value);
+	} else if (name === 'coursenum') {
+	    setCourseNum(value);
+	} else if (name === 'instructionalstyle') {
+	    setInstructionalStyle(value);
+	} else if (name === 'gradingstyle') {
+	    setGradingStyle(value);
+	} else if (name === 'credits') {
+	    setCredits(value);
+	} else if (name === 'yearoffered') {
+	    setYearOffered(value);
+	} else if (name === 'semoffered') {
+	    setSemOffered(value);
+	} else if (name === 'lengthofcourse') {
+	    setLengthOfCourse(value);
+	} else if (name === 'prereq') {
+	    setPrereq(value);
+	} else if (name === 'coursedescription') {
+	    setCourseDescription(value);
+	}
+	    
+    };
+
+     const submitForm = async (event) => {
+    event.preventDefault();
+    try {
+	await addCourse();
+    } catch (error) {
+      console.error('Error:', error);
+	alert('An error occurred. Please try again later here.');
+    }
+     };
+
+    const preventMinus = (e) => {
+	if (e.code === 'Minus') {
+            e.preventDefault();
+	}
+    };
+
+    const preventPasteNegative = (e) => {
+	const clipboardData = e.clipboardData || window.clipboardData;
+	const pastedData = parseFloat(clipboardData.getData('text'));
+
+	if (pastedData < 0) {
+            e.preventDefault();
+	}
+    };
+
+    const addCourse = async () => {
+	try {
+	    const response = await axios.post(
+		'http://www.cs.transy.edu/TUSA/js-login/front/build/addCourses.cgi',
+		{
+		    newcoursename: newcoursename,
+		    programabbr: programabbr,
+		    coursenum: coursenum,
+		    instructionalstyle: instructionalstyle,
+		    gradingstyle: gradingstyle,
+		    credits: credits,
+		    yearoffered: yearoffered,
+		    semoffered: semoffered,
+		    lengthofcourse: lengthofcourse,
+		    prereq: prereq,
+		    coursedescription: coursedescription
+		},
+		{
+		    headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		    }
+		}
+	    );
+	    if (response.status === 200) {
+		alert(`Course Added!`);
+	    } else {
+		alert(`Failed to add course.`);
+	    }
+	} catch (error) {
+	    console.error('Error:', error);
+	    alert('An error occurred. Please try again later.');
+	}
+    };
+
+    
+    
+    return (
+	<div>
+	    <Header />
+	    <div className="below-nav">
+		<NavBar />
+		<main>
+		    <section className="title">
+			<p className="title-text"> ADD COURSES </p>
+		    </section>
+		    <form action="addCourse.cgi" method="post">
+			<div className="new-course-name">
+			    <div className="new-course-name-title">
+				<div className="new-course-title-label">
+				    <a>New Course:</a>
+				</div>
+			    </div>
+			    <textarea rows="1" name="newcoursename" onChange ={handleInput} className="new-course-name-text" spellcheck="true" contenteditable="true" required></textarea>
+			</div>
+			<div className="new-course-content-box">
+			    <div className="column left">
+				Program Abbreviation: {<input type="text" onChange ={handleInput} name="program" required className="courses-input" />} <br />
+				Course Number: {<input type="number" onChange ={handleInput} name="coursenum" step="1" min ="1111" onKeyPress={preventMinus} onPaste={preventPasteNegative} required className="courses-input" />} <br />
+				Instructional Style: <select name="gradingstyle" onChange={handleInput} required className="course-select">
+							 <option value="LECTURE"> Lecture </option>
+							 <option value="APPLIEDMUSIC"> Applied Music </option>
+							 <option value="PEActivity"> PE Activity </option>
+							 <option value="PRACTICUM"> Practicum </option>
+							 <option value="STUDIOART"> Studio Art </option>
+							 <option value="TEAMTAUGHT"> Team-Taught </option>
+						     </select>
+				<br />
+				Grading Style: <select name="gradingstyle" onChange={handleInput} required className="course-select">
+						   <option value="Traditional"> Traditional </option>
+						   <option value="Pass/Fail"> Credit/No Credit </option>
+						   <option value="Audit"> Audit </option>
+						   <option value="SelfGraded"> Self-Graded </option>
+					       </select>
+				<br />
+				Course Purpose: <select name="coursepurpose" onChange={handleInput} required className="course-select">
+						    <option value="1F"> First-Year Seminar </option>
+						    <option value="1L"> GE Foreign Language </option>
+						    <option value="1M"> GE Math </option>
+						    <option value="1PE"> GE Health & Wellness </option>
+						    <option value="2FA"> GE Fine Art </option>
+						    <option value="2H"> GE Humanities </option>
+						    <option value="2NS"> GE Natural Science </option>
+						    <option value="2SS"> GE Social Science </option>
+						    <option value="3NW"> GE Non-Western Culture </option>
+						    <option value="3W"> GE Western Culture </option>
+						    <option value="4"> Upper-Level Liberal Arts </option>
+						    <option value="IU"> Area I University </option>
+						    <option value="2FA4"> GE Fine Art AND Upper-Level Liberal Arts </option>
+						    <option value="2H3A"> GE Humanities AND Non-Western </option>
+						    <option value="2H3B"> GE Humanities AND Western </option>
+						    <option value="2NS4"> GE Natural Science AND Upper-Level Liberal Arts </option>
+						    <option value="2SS4"> GE Social Science AND Upper-Level Liberal Arts </option>
+						    <option value="2SS4W"> GE Social Science AND Upper-Level Liberal Arts AND Writing Intensive</option>
+						    <option value="3NW4"> GE Non-Western AND Upper-Level Liberal Arts </option>
+						    <option value="3NW4W"> GE Non-Western AND Upper-Level Liberal Arts AND Writing Intensive </option>
+						    <option value="3W4"> GE Western Culture AND Upper-Level Liberal Arts </option>
+						    <option value="3W4W"> GE Western Culture AND Upper-Level Liberal Arts AND Writing Intensive </option>
+						    <option value="4W"> Upper-Level Liberal Arts AND Writing Intensive </option>
+						    <option value="NULL"> Other </option>
+						</select>
+				<br />
+			    </div>
+			    <div className="column middle">
+				Credits: <select name="credits" onChange = {handleInput} required className="course-select">
+					     <option value="1.0"> 1.0 </option>
+					     <option value="0.5"> 0.5 </option>
+					     <option value="0.25"> 0.25 </option>
+					     <option value="0.0"> 0.0 </option>
+					 </select>
+				<br />
+				Year: <select name="yearoffered" onChange ={handleInput} id='date-dropdown' className="course-select">
+					  <option value="ODD">Odd Years</option>
+					  <option value="EVEN">Even Years</option>
+					  <option value="ALL">All Years</option>
+				      </select> <br />
+				<label for="semoffered">Semester: </label>
+				<select id="semester" onChange ={handleInput} name="semoffered" className="course-select">
+				    <option value="FALL">Fall</option>
+				    <option value="WINTER">Winter</option>
+				    <option value="MAY">May</option>
+				</select><br />
+				Length: <br />
+				<input type="radio" onChange ={handleInput} name="lengthofcourse" value="fullterm" required className="courses-input" />
+				<label for="fullterm">Full Term</label><br />
+				<input type="radio" name="lengthofcourse" onChange ={handleInput} value="halfterm" className="courses-input" />
+				<label for="halfterm">Half Term</label><br />
+			    </div>
+			    <div className="column right">
+				Prerequisites: {<input type="text" onChange ={handleInput} name="prereq" className="courses-input" />} <br />
+				Course Description: <br />
+				<textarea name="coursedescription" onChange ={handleInput} className="course-description" spellcheck="true" contenteditable="true" required></textarea>
+			    </div>
+			    <button class="submit-button" type="submit">Add Course</button>
+			</div>
+			<br />
+		    </form>
+		</main>
+	    </div>
+	</div>
+    );
+}
+
+export default AddCourses;
+
+
+
+

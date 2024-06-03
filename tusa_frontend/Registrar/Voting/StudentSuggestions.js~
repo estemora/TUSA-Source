@@ -1,0 +1,24 @@
+import React from 'react';
+import '../tusastyles.css'; 
+import './surveystyles.css';
+import NavBar from '../NavBar';
+import Header from '../Header';
+
+function AllCourses() {
+    return (
+	<div>
+	    <Header />
+	    <div className="below-nav">
+		<NavBar />
+		<main>
+		    <section class="title">
+			<p class="title-text"> MANAGE POLLS </p>
+		    </section>
+		    This is where the poll management stuff will be. <br /> <br />
+		</main>
+	    </div>
+	</div>
+    );
+}
+
+export default AllCourses;
